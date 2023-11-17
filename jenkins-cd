@@ -2,6 +2,11 @@ pipeline{
 
     agent any
 
+    parameters{
+        choice(name: 'action', choices: 'create\ndestory\destoryekscluster', description: 'Create/Update or destory the eks cluster')
+    }
+
+
     stages{
         stage('git checkout'){
             steps{
