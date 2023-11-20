@@ -19,8 +19,7 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/dhrbduf/demo-counter-app.git'    
             }
         }
-    }
-    stages{
+
         stage('EKS Connect'){
             steps{
                 sh """
