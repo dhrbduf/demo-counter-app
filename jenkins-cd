@@ -4,7 +4,7 @@ pipeline{
 
     parameters{
         choice(name: 'action', choices: 'create\ndestory\ndestoryekscluster', description: 'Create/Update or destory the eks cluster')
-        string(name: 'cluster', defaultValue: 'demo-cluster', description: 'EKS Cluster Name')
+        string(name: 'cluster', defaultValue: 'OKY-DEV-EKS-Cluster', description: 'EKS Cluster Name')
         string(name: 'region', defaultValue: 'ap-northeast-2', description: 'EKS Cluster Region')
     }
 
@@ -26,6 +26,7 @@ pipeline{
                     aws configure set aws_access_key_id "$ACCESS_KEY"
                     aws configure set aws_secret_access_key "$SECRET_KEY"
                     aws configure set region ""
+                    aws eks --region ${params.region} update-kubeconfig --name ${params.cluster}
                 """;
 
             }
