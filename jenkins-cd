@@ -36,7 +36,7 @@ pipeline{
             when { expression { params.action == 'create'}}
             steps{
                 script{
-                    def apply =false
+                    def apply = false
                     try{
                         input message: 'Please Confirm the apply to initiate the deployments', ok: 'Ready to apply the config'
                         apply = true
@@ -50,11 +50,32 @@ pipeline{
                             kubectl apply -f .
                         """;
                     }
-
                 }
-
             }
         }
+        stage('Delete Deployments'){
+            when { expression { params.action == 'detsory'}}
+            steps{
+                script{
+                    def destory = false
+                    try{
+                        input message: 'Please Confirm the destory to delete the deployments', ok: 'Ready to destory the config'
+                        destory = true
+                    }
+                    catch(err){
+                        destory = false
+                        CurrentBuild.result= 'UNSTABLE'
+                    }
+                    if(destory){
+                        sh """
+                            kubectl delete -f .
+                        """;
+                    }
+                }
+            }
+        }
+
+
 
     }
 
