@@ -54,7 +54,7 @@ pipeline{
             }
         }
         stage('Delete Deployments'){
-            when { expression { params.action == 'detsory'}}
+            when { expression { params.action == 'destory'}}
             steps{
                 script{
                     def destory = false
