@@ -45,6 +45,11 @@ pipeline{
                         apply = false
                         CurrentBuild.result= 'UNSTABLE'
                     }
+                    if(apply){
+                        sh """
+                            kubectl apply -f .
+                        """;
+                    }
 
                 }
 
