@@ -4,6 +4,8 @@ pipeline{
 
     parameters{
         choice(name: 'action', choices: 'create\ndestory\ndestoryekscluster', description: 'Create/Update or destory the eks cluster')
+        string(name: 'cluster', defaultValue: 'demo-cluster', description: 'EKS Cluster Name')
+        string(name: 'region', defaultValue: 'ap-northeast-2', description: 'EKS Cluster Region')
     }
 
 
