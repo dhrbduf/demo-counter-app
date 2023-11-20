@@ -18,9 +18,21 @@ pipeline{
             steps{
                 git branch: 'main', url: 'https://github.com/dhrbduf/demo-counter-app.git'    
             }
-
         }
+    }
 
+    stages{
+        stage('EKS Connect'){
+            steps{
+                sh """
+                    aws configure set aws_access_key_id "$ACCESS_KEY"
+                    aws configure set aws_secret_access_key "$SECRET_KEY"
+                    aws configure set region ""
+
+                """;
+
+            }
+        }
     }
 
 }
