@@ -8,6 +8,10 @@ pipeline{
         string(name: 'region', defaultValue: 'ap-northeast-2', description: 'EKS Cluster Region')
     }
 
+    environment{
+        ACCESS_KEY = credentials('aws_access_key_id')
+        SECRET_KEY = credentials('aws_secret_access_key')
+    }
 
     stages{
         stage('git checkout'){
