@@ -68,7 +68,7 @@ pipeline{
                     }
                     if(destory){
                         sh """
-                            kubectl delete -f deployment.yml
+                            kubectl delete -f .
                         """;
                     }
                 }
